@@ -1,0 +1,100 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #111827;
+  color: white;
+}
+
+header {
+  padding: 24px;
+  background: #020617;
+  border-bottom: 1px solid #334155;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+header p {
+  margin: 8px 0 0;
+  color: #94a3b8;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  padding: 24px;
+}
+
+.card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.card h2 {
+  margin: 0 0 16px;
+  color: #cbd5e1;
+  font-size: 18px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.status-card p {
+  color: #22c55e;
+}
+
+.config-dialog {
+  width: 320px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background: white;
+  color: #111827;
+}
+
+.config-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.config-form {
+  padding: 20px;
+}
+
+.config-form h2 {
+  margin: 0 0 16px;
+  font-size: 20px;
+}
+
+.config-form label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.config-form input {
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 8px;
+}
+
+.config-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+#config-message {
+  margin: 0 0 14px;
+  font-size: 14px;
+}

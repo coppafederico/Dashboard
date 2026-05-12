@@ -1,0 +1,23 @@
+{
+  "name": "dashboard-example",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "build": {
+    "appId": "com.formula.dashboard",
+    "productName": "Formula Dashboard",
+    "win": {
+      "target": "portable"
+    }
+  },
+  "devDependencies": {
+    "electron": "^41.3.0"  
+  }
+}

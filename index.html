@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Formula Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Formula Dashboard example</h1>
+    <p>Static prototype with simulated data</p>
+  </header>
+
+  <main class="dashboard">
+    <section class="card">
+      <h2>Speed</h2>
+      <p><span id="speed">0</span> km/h</p>
+    </section>
+
+    <section class="card">
+      <h2>RPM</h2>
+      <p><span id="rpm">0</span></p>
+    </section>
+
+    <section class="card">
+      <h2>Throttle</h2>
+      <p><span id="throttle">0</span>%</p>
+    </section>
+
+    <section class="card">
+      <h2>Brake</h2>
+      <p><span id="brake">0</span>%</p>
+    </section>
+
+    <section class="card">
+      <h2>Battery Temp</h2>
+      <p><span id="batteryTemp">0</span> °C</p>
+    </section>
+
+    <section class="card status-card">
+      <h2>Status</h2>
+      <p id="status">CONNECTED</p>
+    </section>
+  </main>
+
+  <dialog id="config-dialog" class="config-dialog">
+    <form id="config-form" class="config-form">
+      <h2>Configuration</h2>
+    
+      <label for="config-ip">IP address</label>
+      <input id="config-ip" type="text" placeholder="127.0.0.1" />
+    
+      <label for="config-port">Port</label>
+      <input id="config-port" type="text" placeholder="3000" inputmode="numeric" />
+    
+      <p id="config-message"></p>
+    
+      <div class="config-actions">
+        <button type="submit">Save</button>
+        <button id="close-config" type="button">Close</button>
+      </div>
+    </form>
+  </dialog>
+  <script src="renderer.js"></script>
+</body>
+</html>
