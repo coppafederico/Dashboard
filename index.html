@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Formula Dashboard</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <header>
     <h1>Formula Dashboard example</h1>
@@ -43,18 +45,36 @@
     </section>
   </main>
 
+  <div class="gauges-grid">
+    <div class="gauge-card">
+      <canvas id="fuelPressureGauge" width="180" height="190"></canvas>
+    </div>
+
+    <div class="gauge-card">
+      <canvas id="oilPressureGauge" width="180" height="190"></canvas>
+    </div>
+
+    <div class="gauge-card">
+      <canvas id="engineSpeedGauge" width="180" height="190"></canvas>
+    </div>
+
+    <div class="gauge-card">
+      <canvas id="batteryVoltageGauge" width="180" height="190"></canvas>
+    </div>
+  </div>
+
   <dialog id="config-dialog" class="config-dialog">
     <form id="config-form" class="config-form">
       <h2>Configuration</h2>
-    
+
       <label for="config-ip">IP address</label>
       <input id="config-ip" type="text" placeholder="127.0.0.1" />
-    
+
       <label for="config-port">Port</label>
       <input id="config-port" type="text" placeholder="3000" inputmode="numeric" />
-    
+
       <p id="config-message"></p>
-    
+
       <div class="config-actions">
         <button type="submit">Save</button>
         <button id="close-config" type="button">Close</button>
@@ -63,4 +83,5 @@
   </dialog>
   <script src="renderer.js"></script>
 </body>
+
 </html>

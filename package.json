@@ -14,7 +14,7 @@
     "appId": "com.formula.dashboard",
     "productName": "Formula Dashboard",
     "win": {
-      "target": "portable"
+      "target": "portable" 
     }
   },
   "devDependencies": {
