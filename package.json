@@ -8,16 +8,28 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "build:win": "electron-builder --win portable",
+    "build:linux": "electron-builder --linux tar.gz",
+    "build:mac": "electron-builder --mac dmg"
   },
   "build": {
     "appId": "com.formula.dashboard",
     "productName": "Formula Dashboard",
+    "asar": true,
     "win": {
-      "target": "portable" 
+      "target": "portable"
+    },
+    "linux": {
+      "target": "tar.gz",
+      "category": "Utility"
+    },
+    "mac": {
+      "target": "dmg"
     }
   },
   "devDependencies": {
-    "electron": "^41.3.0"  
+    "electron": "^41.3.0",
+    "electron-builder": "^26.0.12"
   }
 }
