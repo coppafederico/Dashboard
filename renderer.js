@@ -1,4 +1,4 @@
-import { SemiGauge } from './classes.js';
+import { SemiGauge, TimeSeriesChart } from './classes.js';
 
 function generateFakeTelemetryData() {
   // Generates random telemetry values for the dashboard prototype.
@@ -7,7 +7,12 @@ function generateFakeTelemetryData() {
     rpm: Math.floor(3000 + Math.random() * 9000),
     throttle: Math.floor(Math.random() * 100),
     brake: Math.floor(Math.random() * 100),
-    batteryTemp: (30 + Math.random() * 25).toFixed(1)
+    batteryTemp: (30 + Math.random() * 25).toFixed(1),
+
+    fuel_pressure: Math.random() * 6,
+    engine_oil_pressure: Math.random() * 6,
+    battery_voltage: Math.random() * 6,
+    engine_speed: Math.floor(Math.random() * 13500)
   };
 }
 
@@ -20,10 +25,44 @@ function updateDashboard(data) {
   document.getElementById('batteryTemp').textContent = data.batteryTemp;
 }
 
+const lowRangeChart = new TimeSeriesChart(
+  document.getElementById("lowRangeChart"),
+  {
+    minY: 0,
+    maxY: 6,
+    labels: [0, 1, 2, 3, 4, 5, 6],
+    maxPoints: 80,
+    datasets: {
+      fuel_pressure: { color: "#00aaff" },
+      engine_oil_pressure: { color: "#ff2222" },
+      battery_voltage: { color: "#ff00cc" }
+    }
+  }
+);
+
+const highRangeChart = new TimeSeriesChart(
+  document.getElementById("highRangeChart"),
+  {
+    minY: 0,
+    maxY: 13500,
+    labels: [0, 3000, 6000, 9000, 12000, 13500],
+    maxPoints: 80,
+    datasets: {
+      engine_speed: { color: "#00ff33" }
+    }
+  }
+);
+
+function updateCharts(data) {
+  lowRangeChart.addData(data);
+  highRangeChart.addData(data);
+}
+
 // Updates the dashboard every second with simulated data.
 setInterval(() => {
   const data = generateFakeTelemetryData();
   updateDashboard(data);
+  updateCharts(data);
 }, 1000);
 
 const fuelPressureGauge = new SemiGauge(

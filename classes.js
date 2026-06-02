@@ -144,3 +144,93 @@ export class SemiGauge {
     ctx.fillText(Math.round(this.value), centerX, centerY - 10);
   }
 }
+
+export class TimeSeriesChart {
+  constructor(canvas, options) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext("2d");
+
+    this.minY = options.minY;
+    this.maxY = options.maxY;
+    this.labels = options.labels;
+    this.maxPoints = options.maxPoints ?? 80;
+    this.datasets = options.datasets;
+
+    Object.values(this.datasets).forEach(dataset => {
+      dataset.values = [];
+    });
+  }
+
+  addData(data) {
+    Object.entries(this.datasets).forEach(([key, dataset]) => {
+      dataset.values.push(data[key] ?? 0);
+
+      if (dataset.values.length > this.maxPoints) {
+        dataset.values.shift();
+      }
+    });
+
+    this.draw();
+  }
+
+  resizeCanvas() {
+    this.canvas.width = this.canvas.clientWidth;
+    this.canvas.height = this.canvas.clientHeight;
+  }
+
+  draw() {
+    this.resizeCanvas();
+
+    const ctx = this.ctx;
+    const w = this.canvas.width;
+    const h = this.canvas.height;
+
+    const paddingLeft = 65;
+    const paddingRight = 20;
+    const paddingTop = 10;
+    const paddingBottom = 15;
+
+    ctx.clearRect(0, 0, w, h);
+
+    this.labels.forEach(value => {
+      const y = paddingTop + (1 - (value - this.minY) / (this.maxY - this.minY)) * (h - paddingTop - paddingBottom);
+
+      ctx.beginPath();
+      ctx.moveTo(paddingLeft, y);
+      ctx.lineTo(w - paddingRight, y);
+      ctx.strokeStyle = "#444";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      ctx.fillStyle = "#ddd";
+      ctx.font = "12px Arial";
+      ctx.textAlign = "right";
+      ctx.fillText(value.toLocaleString(), paddingLeft - 10, y + 4);
+    });
+
+    ctx.strokeStyle = "#aaa";
+    ctx.lineWidth = 1;
+
+    ctx.beginPath();
+    ctx.moveTo(paddingLeft, paddingTop);
+    ctx.lineTo(paddingLeft, h - paddingBottom);
+    ctx.lineTo(w - paddingRight, h - paddingBottom);
+    ctx.stroke();
+
+    Object.values(this.datasets).forEach(dataset => {
+      ctx.beginPath();
+      ctx.strokeStyle = dataset.color;
+      ctx.lineWidth = 2;
+
+      dataset.values.forEach((value, index) => {
+        const x = paddingLeft + index * ((w - paddingLeft - paddingRight) / (this.maxPoints - 1));
+        const y = paddingTop + (1 - (value - this.minY) / (this.maxY - this.minY)) * (h - paddingTop - paddingBottom);
+
+        if (index === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+
+      ctx.stroke();
+    });
+  }
+}

@@ -63,6 +63,18 @@
     </div>
   </div>
 
+  <div class="charts-panel">
+    <div class="charts-legend">
+      <span><span class="legend-color fuel"></span> fuel_pressure</span>
+      <span><span class="legend-color oil"></span> engine_oil_pressure</span>
+      <span><span class="legend-color battery"></span> battery_voltage</span>
+      <span><span class="legend-color speed"></span> engine_speed</span>
+    </div>
+
+    <canvas id="lowRangeChart"></canvas>
+    <canvas id="highRangeChart"></canvas>
+  </div>
+
   <dialog id="config-dialog" class="config-dialog">
     <form id="config-form" class="config-form">
       <h2>Configuration</h2>

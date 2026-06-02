@@ -11,7 +11,8 @@
     "build": "electron-builder",
     "build:win": "electron-builder --win portable",
     "build:linux": "electron-builder --linux tar.gz",
-    "build:mac": "electron-builder --mac dmg"
+    "build:mac": "electron-builder --mac dmg",
+    "build:all": "electron-builder --win portable --linux tar.gz"
   },
   "build": {
     "appId": "com.formula.dashboard",
